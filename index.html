@@ -16,6 +16,7 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            overflow: hidden;
         }
         .icon-box {
             background-color: #ff0000;
@@ -54,6 +55,69 @@
             text-decoration: none;
             font-weight: bold;
         }
+
+        /* Custom Popup Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-box {
+            background-color: #222222;
+            width: 85%;
+            max-width: 340px;
+            border-radius: 4px;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            border-top: 3px solid #ff0000;
+        }
+        .modal-content {
+            padding: 20px;
+        }
+        .modal-box h3 {
+            margin: 0 0 12px 0;
+            font-size: 17px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .modal-box p {
+            margin: 0 0 20px 0;
+            font-size: 13px;
+            color: #b0b0b0;
+            text-transform: none;
+            line-height: 1.4;
+            text-align: left;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 0 20px 20px 20px;
+        }
+        .modal-buttons button {
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 8px 4px;
+            letter-spacing: 0.5px;
+        }
+        .btn-goback {
+            color: #b0b0b0;
+        }
+        .btn-continue {
+            color: #ff4d4d;
+        }
     </style>
 </head>
 <body>
@@ -69,16 +133,31 @@
         Not opening? <a href="https://youtube.com/@kumarbuildspro?si=a58Tjord4fyY3XRi&sub_confirmation=1" id="fallback-link">Tap here</a>
     </div>
 
+    <!-- Custom Popup Modal -->
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-box">
+            <div class="modal-content">
+                <h3>You're leaving our app</h3>
+                <p>The website you're viewing is attempting to open an external app. Would you like to continue?</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-goback" onclick="goBack()">GO BACK</button>
+                <button class="btn-continue" onclick="openYouTube()">CONTINUE</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Aapka channel link with tracking and subscribe popup parameter
         const targetUrl = "https://youtube.com/@kumarbuildspro?si=a58Tjord4fyY3XRi&sub_confirmation=1";
 
-        // Page load hote hi automatic redirect
-        window.onload = function() {
-            setTimeout(function() {
-                window.location.href = targetUrl;
-            }, 500);
-        };
+        function openYouTube() {
+            window.location.href = targetUrl;
+        }
+
+        function goBack() {
+            document.getElementById('customModal').style.display = 'none';
+        }
     </script>
 
 </body>
