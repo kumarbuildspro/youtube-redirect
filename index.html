@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening YouTube</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .icon-box {
+            background-color: #ff0000;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid #ffffff;
+        }
+        h1 {
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin: 10px 0;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .fallback {
+            margin-top: 30px;
+            color: #888;
+            font-size: 13px;
+        }
+        .fallback a {
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="icon-box">
+        <div class="play-triangle"></div>
+    </div>
+
+    <h1>OPENING YOUTUBE</h1>
+    <p>Launching app instantly...</p>
+
+    <div class="fallback">
+        Not opening? <a href="https://youtube.com/@kumarbuildspro?si=a58Tjord4fyY3XRi&sub_confirmation=1" id="fallback-link">Tap here</a>
+    </div>
+
+    <script>
+        // Aapka channel link with tracking and subscribe popup parameter
+        const targetUrl = "https://youtube.com/@kumarbuildspro?si=a58Tjord4fyY3XRi&sub_confirmation=1";
+
+        // Page load hote hi automatic redirect
+        window.onload = function() {
+            setTimeout(function() {
+                window.location.href = targetUrl;
+            }, 500);
+        };
+    </script>
+
+</body>
+</html>
