@@ -130,7 +130,7 @@
     <p>Launching app instantly...</p>
 
     <div class="fallback">
-        Not opening? <a href="https://youtube.com/@kumarbuildspro?si=a58Tjord4fyY3XRi&sub_confirmation=1" id="fallback-link">Tap here</a>
+        Not opening? <a href="#" id="fallback-link">Tap here</a>
     </div>
 
     <!-- Custom Popup Modal -->
@@ -148,11 +148,26 @@
     </div>
 
     <script>
-        // Aapka channel link with tracking and subscribe popup parameter
-        const targetUrl = "https://youtube.com/@kumarbuildspro?si=a58Tjord4fyY3XRi&sub_confirmation=1";
+        // URL se parameters read karne ka logic
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('v'); // e.g., ?v=XYZ123
+
+        // Default link (agar koi ?v parameter na ho, toh channel khulega)
+        let targetUrl = "https://youtube.com/@kumarbuildspro?si=a58Tjord4fyY3XRi&sub_confirmation=1";
+
+        // Agar URL me video ID di gayi hai, toh target URL us video ka ban jayega
+        if (videoId) {
+            targetUrl = `https://www.youtube.com/watch?v=${videoId}`;
+        }
+
+        // Fallback link aur Global variable update karna
+        window.onload = function() {
+            document.getElementById('fallback-link').href = targetUrl;
+            window.finalTargetUrl = targetUrl;
+        };
 
         function openYouTube() {
-            window.location.href = targetUrl;
+            window.location.href = window.finalTargetUrl;
         }
 
         function goBack() {
